@@ -64,22 +64,30 @@ class Target extends Component {
   }
 }
 
+class Background extends Component {
+  constructor(x, y, w, h) {
+    super(x, y, w, h);
+    this.img = new Image();
+    this.img.src = "./images/background.png";
+  }
+}
+
 myGameArea.start();
 
-let background = new Component(
+let background = new Background(
   0,
   0,
   myGameArea.canvas.width,
-  myGameArea.canvas.height,
-  "pink"
+  myGameArea.canvas.height
 );
+
 myGameArea.components.push(background);
 
-let player = new Player(350, 200, 100, 100);
-myGameArea.components.push(player);
-
-let target = new Target(500, 50, 150, 470);
+let target = new Target(430, 40, 150, 470);
 myGameArea.components.push(target);
+
+let player = new Player(270, 200, 100, 100);
+myGameArea.components.push(player);
 
 setInterval(myGameArea.update, 1000 / 30);
 
