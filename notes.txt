@@ -1,0 +1,2 @@
+collision explanation: 1:29h
+gameover: 3:10h

@@ -1,6 +1,9 @@
 const myGameArea = {
   canvas: document.createElement("canvas"),
   components: [],
+  headProgress: 0,
+  bodyProgress: 0,
+  legsProgress: 0,
   isGameOver: false,
   start: function () {
     this.canvas.width = 1024;
@@ -12,6 +15,19 @@ const myGameArea = {
     myGameArea.components.forEach((component) => {
       component.render();
     });
+    if (player.checkCollision(head)) {
+      player.x = 320;
+      myGameArea.headProgress += 0.5;
+      console.log(myGameArea.headProgress);
+    } else if (player.checkCollision(body)) {
+      player.x = 320;
+      myGameArea.bodyProgress += 0.5;
+      console.log(myGameArea.bodyProgress);
+    } else if (player.checkCollision(legs)) {
+      player.x = 320;
+      myGameArea.legsProgress += 0.5;
+      console.log(myGameArea.legsProgress);
+    }
   },
 };
 
@@ -33,6 +49,19 @@ class Component {
       ctx.fillRect(this.x, this.y, this.w, this.h);
     }
   }
+
+  checkCollision(otherComponent) {
+    if (
+      this.x < otherComponent.x + otherComponent.w &&
+      this.x + this.w > otherComponent.x &&
+      this.y < otherComponent.y + otherComponent.h &&
+      this.y + this.h > otherComponent.y
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 class Player extends Component {
@@ -51,8 +80,8 @@ class Player extends Component {
   }
 
   moveRight() {
-    if (this.x > 360) {
-      this.x = 360;
+    if (this.x > 349) {
+      this.x = 349;
     } else {
       this.x += 10;
     }
@@ -91,6 +120,7 @@ class Background extends Component {
 
 myGameArea.start();
 
+// Render background
 let background = new Background(
   0,
   0,
@@ -108,10 +138,10 @@ myGameArea.components.push(target);
 let head = new Component(450, 38, 100, 120, "red");
 myGameArea.components.push(head);
 
-let body = new Component(450, 200, 100, 140, "red");
+let body = new Component(450, 200, 100, 140, "yellow");
 myGameArea.components.push(body);
 
-let legs = new Component(450, 380, 100, 135, "red");
+let legs = new Component(450, 380, 100, 135, "green");
 myGameArea.components.push(legs);
 
 // Dog
