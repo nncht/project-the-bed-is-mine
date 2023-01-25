@@ -1,6 +1,7 @@
 const myGameArea = {
   canvas: document.createElement("canvas"),
   components: [],
+  isGameOver: false,
   start: function () {
     this.canvas.width = 1024;
     this.canvas.height = 576;
@@ -99,9 +100,21 @@ let background = new Background(
 
 myGameArea.components.push(background);
 
+// Sleeping person
 let target = new Target(430, 40, 150, 470);
 myGameArea.components.push(target);
 
+// Collision hitboxes for head, body and legs
+let head = new Component(450, 38, 100, 120, "red");
+myGameArea.components.push(head);
+
+let body = new Component(450, 200, 100, 140, "red");
+myGameArea.components.push(body);
+
+let legs = new Component(450, 380, 100, 135, "red");
+myGameArea.components.push(legs);
+
+// Dog
 let player = new Player(270, 200, 100, 100);
 myGameArea.components.push(player);
 
