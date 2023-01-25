@@ -118,6 +118,35 @@ class Background extends Component {
   }
 }
 
+class ProgressBar {
+  constructor(element, initialValue = 0) {
+    this.valueElem = element.querySelector(".progress-bar-value");
+    this.fillElem = element.querySelector(".progress-bar-fill");
+
+    this.setValue(initialValue);
+  }
+
+  setValue(newValue) {
+    if (newValue < 0) {
+      newValue = 0;
+    }
+
+    if (newValue > 100) {
+      newValue = 100;
+    }
+
+    myGameArea.headProgress = newValue;
+    this.update();
+  }
+
+  update() {
+    const percentage = myGameArea.headProgress + "%";
+    this.fillElem.style.width = percentage;
+    this.valueElem.textContent = percentage;
+    console.log(percentage);
+  }
+}
+
 myGameArea.start();
 
 // Render background
@@ -147,6 +176,9 @@ myGameArea.components.push(legs);
 // Dog
 let player = new Player(270, 200, 100, 100);
 myGameArea.components.push(player);
+
+// Progress bar
+let headBar = new ProgressBar(document.querySelector(".progress-bar"), 25);
 
 setInterval(myGameArea.update, 1000 / 30);
 
