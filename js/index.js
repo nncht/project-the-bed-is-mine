@@ -42,17 +42,33 @@ class Player extends Component {
   }
 
   moveLeft() {
-    this.x -= 20;
+    if (this.x < 250) {
+      this.x = 250;
+    } else {
+      this.x -= 10;
+    }
   }
 
   moveRight() {
-    this.x += 20;
+    if (this.x > 360) {
+      this.x = 360;
+    } else {
+      this.x += 10;
+    }
   }
   moveUp() {
-    this.y -= 20;
+    if (this.y < 10) {
+      this.y = 10;
+    } else {
+      this.y -= 10;
+    }
   }
   moveDown() {
-    this.y += 20;
+    if (this.y > 426) {
+      this.y = 426;
+    } else {
+      this.y += 10;
+    }
   }
 }
 
