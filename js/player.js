@@ -1,29 +1,42 @@
 // class Player extends Component {
-//   constructor(x, y, w, h) {
-//     super(x, y, w, h);
-//     this.img = new Image();
-//     this.img.src = "./images/dog_awake.png";
+//     constructor (x, w, y, h, img) {
+//         super(x, y, w, h)
+//         this.img = img
+//     }
+// }
 
-//     this.gravity = 0.1;
-//     this.ySpeed = 0;
-//     this.xSpeed = 1;
+// class Player {
+//   constructor() {
+//     this.x = 220;
+//     this.y = 520;
+//     this.width = 50;
+//     this.height = 80;
+//     this.img = "./images/dog_awake.png";
 //   }
 
-//   // This render() is ONLY FOR THE PLAYER
-//   render() {
-//     const ctx = myGameArea.context;
-//     ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
+//   drawPlayer() {
+//     const playerImage = new Image();
+//     playerImage.src = this.img;
+//     ctx.drawImage(playerImage, this.x, this.y, this.width, this.height);
 //   }
 
-//   moveLeft() {
-//     this.x -= this.xSpeed;
-//   }
-
-//   moveRight() {
-//     this.x += this.xSpeed;
-//   }
-
-//   moveUp() {
-//     this.ySpeed = 3;
-//   }
+//     moveCar(keyCode){
+//       console.log('x', this.x);
+//       console.log('y', this.y);
+//       ctx.clearRect(this.x, this.y, this.width, this.height);
+//       switch(keyCode){
+//         case 37:
+//         //Making sure car doesn't go off the road
+//         if(this.x > 20){
+//           this.x -= 10;
+//         }
+//           break;
+//         case 39:
+//         //Making sure car doesn't go off the road
+//         if (this.x < 430 ){
+//           this.x += 10;
+//         }
+//           break;
+//       }
+//     }
 // }
