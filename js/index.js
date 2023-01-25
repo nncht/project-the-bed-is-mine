@@ -102,36 +102,3 @@ document.addEventListener("keydown", (event) => {
       break;
   }
 });
-
-// const backgroundImage = new Image();
-// backgroundImage.src = "./images/background.png";
-
-// const playerImage = new Image();
-// playerImage.src = "./images/dog_awake.png";
-
-// const ownerImage = new Image();
-// ownerImage.src = "./images/owner_asleep.png";
-
-// backgroundImage.onload = () => {
-//   ctx.scale(
-//     canvas.width / backgroundImage.width,
-//     canvas.height / backgroundImage.height
-//   );
-//   ctx.drawImage(backgroundImage, 0, 0);
-// };
-
-// playerImage.onload = () => {
-//   ctx.save();
-//   ctx.scale(0.25, 0.25);
-//   ctx.drawImage(playerImage, 1050, 600);
-// };
-
-// ownerImage.onload = () => {
-//   ctx.save();
-//   ctx.scale(2.1, 2.1);
-//   ctx.drawImage(ownerImage, 840, 70);
-// };
-
-// function animate() {
-//   window.requestAnimationFrame(animate);
-// }
