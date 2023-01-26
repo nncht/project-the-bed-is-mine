@@ -4,6 +4,7 @@ const myGameArea = {
   headProgress: 0,
   buttProgress: 0,
   legsProgress: 0,
+  remainingLives: 3,
   isGameOver: false,
   start: function () {
     this.canvas.width = 1024;
@@ -39,6 +40,7 @@ const myGameArea = {
     ) {
       document.getElementById("title").innerHTML = "Territory claimed!";
       target.x = 630;
+      zzz.x = 680;
     }
   },
 };
@@ -138,6 +140,14 @@ class Life extends Component {
   }
 }
 
+class Zzz extends Component {
+  constructor(x, y, w, h) {
+    super(x, y, w, h);
+    this.img = new Image();
+    this.img.src = "./images/zzz.png";
+  }
+}
+
 class ProgressBar {
   constructor(element, initialValue = 0, type) {
     this.fillElem = element.querySelector(".progress-bar-fill");
@@ -176,6 +186,9 @@ myGameArea.components.push(background);
 // Sleeping person
 let target = new Target(430, 40, 150, 470);
 myGameArea.components.push(target);
+
+let zzz = new Zzz(470, 10, 50, 57);
+myGameArea.components.push(zzz);
 
 // Dog
 let player = new Player(270, 200, 100, 100);
