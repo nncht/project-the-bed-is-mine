@@ -18,15 +18,15 @@ const myGameArea = {
     if (player.checkCollision(head)) {
       player.x = 320;
       myGameArea.headProgress += 0.5;
-      headBar.setValue(myGameArea.headProgress);
-      // ProgressBar.setValue(myGameArea.headProgress);
       console.log(myGameArea.headProgress);
     } else if (player.checkCollision(body)) {
       player.x = 320;
       myGameArea.bodyProgress += 0.5;
+      console.log(myGameArea.bodyProgress);
     } else if (player.checkCollision(legs)) {
       player.x = 320;
       myGameArea.legsProgress += 0.5;
+      console.log(myGameArea.legsProgress);
     }
   },
 };
@@ -127,6 +127,10 @@ class ProgressBar {
   }
 
   setValue(newValue) {
+    if (newValue < 0) {
+      newValue = 0;
+    }
+
     if (newValue > 100) {
       newValue = 100;
     }
@@ -139,6 +143,7 @@ class ProgressBar {
     const percentage = myGameArea.headProgress + "%";
     this.fillElem.style.width = percentage;
     this.valueElem.textContent = percentage;
+    console.log(percentage);
   }
 }
 
@@ -173,7 +178,7 @@ let player = new Player(270, 200, 100, 100);
 myGameArea.components.push(player);
 
 // Progress bar
-let headBar = new ProgressBar(document.querySelector(".progress-bar"), 0);
+let headBar = new ProgressBar(document.querySelector(".progress-bar"), 25);
 
 setInterval(myGameArea.update, 1000 / 30);
 
