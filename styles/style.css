@@ -5,7 +5,7 @@ body {
 
 .progress-bar {
   width: 1016px;
-  height: 40px;
+  height: 20px;
   border: 4px solid #7e6ca1;
 }
 
@@ -13,16 +13,7 @@ body {
   height: 100%;
   background: #cc9fc5;
   transition: width 0.5s;
-}
-
-.progress-bar-value {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  font-weight: bold;
 }

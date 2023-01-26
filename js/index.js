@@ -9,7 +9,7 @@ const myGameArea = {
     this.canvas.width = 1024;
     this.canvas.height = 576;
     this.ctx = this.canvas.getContext("2d");
-    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+    document.body.insertBefore(this.canvas, document.body.childNodes[2]);
   },
   update: function () {
     myGameArea.components.forEach((component) => {
@@ -119,7 +119,6 @@ class Target extends Component {
 
 class ProgressBar {
   constructor(element, initialValue = 0) {
-    this.valueElem = element.querySelector(".progress-bar-value");
     this.fillElem = element.querySelector(".progress-bar-fill");
 
     this.setValue(initialValue);
@@ -137,7 +136,6 @@ class ProgressBar {
   update() {
     const percentage = myGameArea.headProgress + "%";
     this.fillElem.style.width = percentage;
-    this.valueElem.textContent = percentage;
   }
 }
 
