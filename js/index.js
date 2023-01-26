@@ -118,6 +118,14 @@ class Target extends Component {
   }
 }
 
+class Life extends Component {
+  constructor(x, y, w, h) {
+    super(x, y, w, h);
+    this.img = new Image();
+    this.img.src = "./images/heart.png";
+  }
+}
+
 class ProgressBar {
   constructor(element, initialValue = 0, type) {
     this.fillElem = element.querySelector(".progress-bar-fill");
@@ -171,7 +179,17 @@ myGameArea.components.push(butt);
 let legs = new Component(440, 450, 100, 50, "rgba(0,0,0,0.0)");
 myGameArea.components.push(legs);
 
-// Progress bar
+// Render hearts
+let heart1 = new Life(myGameArea.canvas.width - 70, 18, 50, 50);
+myGameArea.components.push(heart1);
+
+let heart2 = new Life(myGameArea.canvas.width - 140, 18, 50, 50);
+myGameArea.components.push(heart2);
+
+let heart3 = new Life(myGameArea.canvas.width - 210, 18, 50, 50);
+myGameArea.components.push(heart3);
+
+// Progress bars
 let headBar = new ProgressBar(
   document.getElementById("head-progress"),
   0,
