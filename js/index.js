@@ -5,6 +5,7 @@ const myGameArea = {
   buttProgress: 0,
   legsProgress: 0,
   remainingLives: 3,
+  isGamePaused: false,
   isGameOver: false,
   start: function () {
     this.canvas.width = 1024;
@@ -42,8 +43,15 @@ const myGameArea = {
       target.x = 630;
       zzz.x = 680;
     }
+
+    // Game Over
+    if (this.remainingLives === 0) {
+      document.getElementById("title").innerHTML = "Game Over!";
+    }
   },
 };
+
+myGameArea.start();
 
 class Component {
   constructor(x, y, w, h, color) {
@@ -108,6 +116,7 @@ class Player extends Component {
       this.x += 10;
     }
   }
+
   moveUp() {
     if (this.y < 10) {
       this.y = 10;
@@ -115,12 +124,18 @@ class Player extends Component {
       this.y -= 10;
     }
   }
+
   moveDown() {
     if (this.y > 426) {
       this.y = 426;
     } else {
       this.y += 10;
     }
+  }
+
+  holdSpace() {
+    player.x = 270;
+    player.y = 200;
   }
 }
 
@@ -170,8 +185,6 @@ class ProgressBar {
     console.log(percentage);
   }
 }
-
-myGameArea.start();
 
 // Render background
 let background = new Background(
@@ -248,7 +261,34 @@ document.addEventListener("keydown", (event) => {
       player.moveRight();
       break;
     case " ":
-      console.log("pressed space key");
+      player.holdSpace();
       break;
   }
 });
+
+document.getElementById("play").addEventListener("click", (event) => {
+  document.getElementById("main-menu").style.display = "none";
+  document.getElementById("restart").disabled = false;
+  document.getElementById("pause").disabled = false;
+});
+
+let restart = () => {
+  myGameArea.headProgress = 0;
+  myGameArea.buttProgress = 0;
+  myGameArea.legsProgress = 0;
+  remainingLives = 3;
+  player.x = 270;
+  player.y = 200;
+  target.x = 430;
+  target.y = 40;
+};
+
+let pauseGame = () => {
+  myGameArea.isGamePaused = true;
+  document.getElementById("pause-game").style.display = "flex";
+};
+
+let resumeGame = () => {
+  myGameArea.isGamePaused = false;
+  document.getElementById("pause-game").style.display = "none";
+};

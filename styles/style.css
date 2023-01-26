@@ -4,8 +4,20 @@ body {
   color: #3b2e54;
 }
 
+.all-bars {
+  position: absolute;
+  left: 762px;
+  top: 340px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: stretch;
+  z-index: 100;
+}
+
 .progress-bar {
-  width: 1016px;
+  width: 250px;
   height: 20px;
   border: 4px solid #695988;
   background-color: aliceblue;
@@ -17,4 +29,38 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#main-menu,
+#game-over,
+#pause-game {
+  position: absolute;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  top: 3%;
+  left: 300px;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#game-over,
+#pause-game {
+  display: none;
+}
+
+#restart {
+  position: absolute;
+  bottom: -50px;
+  left: 40%;
+  transform: translateX(-50%);
+}
+
+#pause {
+  position: absolute;
+  bottom: -50px;
+  left: 60%;
+  transform: translateX(-50%);
 }

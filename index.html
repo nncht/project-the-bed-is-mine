@@ -7,23 +7,43 @@
     <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
-    <h1 id="title">The bed is mine!</h1>
+    <div>
+      <h1 id="title">The bed is mine!</h1>
+      <button id="main-menu">Start Game</button>
+    </div>
+
+    <div id="pause-game">
+      <h1>Game Paused</h1>
+
+      <button id="resume">Resume</button>
+    </div>
+
+    <button disabled id="restart">Restart</button>
+    <button disabled id="pause">Pause</button>
+
+    <div id="game-over">
+      <h1>Game Over</h1>
+
+      <button id="restart-game-over">Play Again</button>
+    </div>
 
     <!-- Progress Bars -->
-    <h3>😴</h3>
-    <div class="progress-bar" id="head-progress">
-      <div class="progress-bar-fill"></div>
+    <div class="all-bars">
+      <h3>😴</h3>
+      <div class="progress-bar" id="head-progress">
+        <div class="progress-bar-fill"></div>
+      </div>
+      <h3>🍑</h3>
+      <div class="progress-bar" id="butt-progress">
+        <div class="progress-bar-fill"></div>
+      </div>
+      <h3>🦶</h3>
+      <div class="progress-bar" id="legs-progress">
+        <div class="progress-bar-fill"></div>
+      </div>
     </div>
-    <h3>🍑</h3>
-    <div class="progress-bar" id="butt-progress">
-      <div class="progress-bar-fill"></div>
-    </div>
-    <h3>🦶</h3>
-    <div class="progress-bar" id="legs-progress">
-      <div class="progress-bar-fill"></div>
-    </div>
-
     <!-- Scripts -->
+
     <script src="js/index.js"></script>
   </body>
 </html>
