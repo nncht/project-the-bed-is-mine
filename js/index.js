@@ -19,13 +19,14 @@ const myGameArea = {
       player.x = 320;
       myGameArea.headProgress += 1;
       headBar.setValue(myGameArea.headProgress);
-      console.log(myGameArea.headProgress);
     } else if (player.checkCollision(butt)) {
       player.x = 320;
       myGameArea.buttProgress += 1;
+      buttBar.setValue(myGameArea.buttProgress);
     } else if (player.checkCollision(legs)) {
       player.x = 320;
       myGameArea.legsProgress += 1;
+      legsBar.setValue(myGameArea.legsProgress);
     }
   },
 };
@@ -118,10 +119,10 @@ class Target extends Component {
 }
 
 class ProgressBar {
-  constructor(element, initialValue = 0) {
+  constructor(element, initialValue = 0, type) {
     this.fillElem = element.querySelector(".progress-bar-fill");
-
     this.setValue(initialValue);
+    this.type = type;
   }
 
   setValue(newValue) {
@@ -129,13 +130,14 @@ class ProgressBar {
       newValue = 100;
     }
 
-    myGameArea.headProgress = newValue;
+    this.type = newValue;
     this.update();
   }
 
   update() {
-    const percentage = myGameArea.headProgress + "%";
+    const percentage = this.type + "%";
     this.fillElem.style.width = percentage;
+    console.log(percentage);
   }
 }
 
@@ -170,7 +172,21 @@ let legs = new Component(440, 450, 100, 50, "rgba(0,0,0,0.0)");
 myGameArea.components.push(legs);
 
 // Progress bar
-let headBar = new ProgressBar(document.querySelector(".progress-bar"), 0);
+let headBar = new ProgressBar(
+  document.getElementById("head-progress"),
+  0,
+  myGameArea.headProgress
+);
+let buttBar = new ProgressBar(
+  document.getElementById("butt-progress"),
+  0,
+  myGameArea.buttProgress
+);
+let legsBar = new ProgressBar(
+  document.getElementById("legs-progress"),
+  0,
+  myGameArea.legsProgress
+);
 
 setInterval(myGameArea.update, 1000 / 30);
 

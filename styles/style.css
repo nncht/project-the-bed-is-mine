@@ -1,12 +1,14 @@
 body {
-  background-color: #fed8bc;
+  background-color: #aba1c0;
   font-family: Arial, Helvetica, sans-serif;
+  color: #3b2e54;
 }
 
 .progress-bar {
   width: 1016px;
   height: 20px;
-  border: 4px solid #7e6ca1;
+  border: 4px solid #695988;
+  background-color: aliceblue;
 }
 
 .progress-bar-fill {
