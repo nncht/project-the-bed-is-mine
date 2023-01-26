@@ -17,16 +17,15 @@ const myGameArea = {
     });
     if (player.checkCollision(head)) {
       player.x = 320;
-      myGameArea.headProgress += 0.5;
+      myGameArea.headProgress += 1;
       headBar.setValue(myGameArea.headProgress);
-      // ProgressBar.setValue(myGameArea.headProgress);
       console.log(myGameArea.headProgress);
     } else if (player.checkCollision(body)) {
       player.x = 320;
-      myGameArea.bodyProgress += 0.5;
+      myGameArea.bodyProgress += 1;
     } else if (player.checkCollision(legs)) {
       player.x = 320;
-      myGameArea.legsProgress += 0.5;
+      myGameArea.legsProgress += 1;
     }
   },
 };
