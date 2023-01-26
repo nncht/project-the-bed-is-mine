@@ -51,7 +51,8 @@ const myGameArea = {
   },
 };
 
-myGameArea.start();
+let clickButton = document.getElementById("play");
+clickButton.addEventListener("click", myGameArea.start());
 
 class Component {
   constructor(x, y, w, h, color) {
@@ -266,29 +267,29 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-document.getElementById("play").addEventListener("click", (event) => {
-  document.getElementById("main-menu").style.display = "none";
-  document.getElementById("restart").disabled = false;
-  document.getElementById("pause").disabled = false;
-});
+// document.getElementById("play").addEventListener("click", (event) => {
+//   document.getElementById("main-menu").style.display = "none";
+//   document.getElementById("restart").disabled = false;
+//   document.getElementById("pause").disabled = false;
+// });
 
-let restart = () => {
-  myGameArea.headProgress = 0;
-  myGameArea.buttProgress = 0;
-  myGameArea.legsProgress = 0;
-  remainingLives = 3;
-  player.x = 270;
-  player.y = 200;
-  target.x = 430;
-  target.y = 40;
-};
+// let restart = () => {
+//   myGameArea.headProgress = 0;
+//   myGameArea.buttProgress = 0;
+//   myGameArea.legsProgress = 0;
+//   remainingLives = 3;
+//   player.x = 270;
+//   player.y = 200;
+//   target.x = 430;
+//   target.y = 40;
+// };
 
-let pauseGame = () => {
-  myGameArea.isGamePaused = true;
-  document.getElementById("pause-game").style.display = "flex";
-};
+// let pauseGame = () => {
+//   myGameArea.isGamePaused = true;
+//   document.getElementById("pause-game").style.display = "flex";
+// };
 
-let resumeGame = () => {
-  myGameArea.isGamePaused = false;
-  document.getElementById("pause-game").style.display = "none";
-};
+// let resumeGame = () => {
+//   myGameArea.isGamePaused = false;
+//   document.getElementById("pause-game").style.display = "none";
+// };
