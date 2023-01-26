@@ -2,7 +2,7 @@ const myGameArea = {
   canvas: document.createElement("canvas"),
   components: [],
   headProgress: 0,
-  bodyProgress: 0,
+  buttProgress: 0,
   legsProgress: 0,
   isGameOver: false,
   start: function () {
@@ -20,9 +20,9 @@ const myGameArea = {
       myGameArea.headProgress += 1;
       headBar.setValue(myGameArea.headProgress);
       console.log(myGameArea.headProgress);
-    } else if (player.checkCollision(body)) {
+    } else if (player.checkCollision(butt)) {
       player.x = 320;
-      myGameArea.bodyProgress += 1;
+      myGameArea.buttProgress += 1;
     } else if (player.checkCollision(legs)) {
       player.x = 320;
       myGameArea.legsProgress += 1;
@@ -60,6 +60,14 @@ class Component {
     } else {
       return false;
     }
+  }
+}
+
+class Background extends Component {
+  constructor(x, y, w, h) {
+    super(x, y, w, h);
+    this.img = new Image();
+    this.img.src = "./images/background.png";
   }
 }
 
@@ -109,14 +117,6 @@ class Target extends Component {
   }
 }
 
-class Background extends Component {
-  constructor(x, y, w, h) {
-    super(x, y, w, h);
-    this.img = new Image();
-    this.img.src = "./images/background.png";
-  }
-}
-
 class ProgressBar {
   constructor(element, initialValue = 0) {
     this.valueElem = element.querySelector(".progress-bar-value");
@@ -157,19 +157,19 @@ myGameArea.components.push(background);
 let target = new Target(430, 40, 150, 470);
 myGameArea.components.push(target);
 
-// Collision hitboxes for head, body and legs
-let head = new Component(450, 38, 100, 120, "red");
-myGameArea.components.push(head);
-
-let body = new Component(450, 200, 100, 140, "yellow");
-myGameArea.components.push(body);
-
-let legs = new Component(450, 380, 100, 135, "green");
-myGameArea.components.push(legs);
-
 // Dog
 let player = new Player(270, 200, 100, 100);
 myGameArea.components.push(player);
+
+// Collision hitboxes for head, butt and legs
+let head = new Component(440, 38, 100, 50, "rgba(0,0,0,0.0)");
+myGameArea.components.push(head);
+
+let butt = new Component(440, 250, 100, 20, "rgba(0,0,0,0.0)");
+myGameArea.components.push(butt);
+
+let legs = new Component(440, 450, 100, 50, "rgba(0,0,0,0.0)");
+myGameArea.components.push(legs);
 
 // Progress bar
 let headBar = new ProgressBar(document.querySelector(".progress-bar"), 0);
