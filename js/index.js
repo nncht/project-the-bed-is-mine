@@ -15,18 +15,30 @@ const myGameArea = {
     myGameArea.components.forEach((component) => {
       component.render();
     });
+
+    // Increment progress values
     if (player.checkCollision(head)) {
       player.x = 320;
-      myGameArea.headProgress += 1;
+      myGameArea.headProgress += 10;
       headBar.setValue(myGameArea.headProgress);
     } else if (player.checkCollision(butt)) {
       player.x = 320;
-      myGameArea.buttProgress += 1;
+      myGameArea.buttProgress += 10;
       buttBar.setValue(myGameArea.buttProgress);
     } else if (player.checkCollision(legs)) {
       player.x = 320;
-      myGameArea.legsProgress += 1;
+      myGameArea.legsProgress += 10;
       legsBar.setValue(myGameArea.legsProgress);
+    }
+
+    // Victory
+    if (
+      myGameArea.headProgress &&
+      myGameArea.buttProgress &&
+      myGameArea.legsProgress >= 100
+    ) {
+      document.getElementById("title").innerHTML = "Territory claimed!";
+      target.x = 630;
     }
   },
 };
