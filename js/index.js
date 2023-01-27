@@ -54,7 +54,7 @@ const myGameArea = {
     if (player.checkCollision(tempGameOver)) {
       myGameArea.isGameOver = true;
       document.querySelector(".all-bars").style.visibility = "hidden";
-      document.getElementById("title").innerHTML = "Game Over!";
+      document.getElementById("title").innerHTML = "The bed is ours!";
       document.getElementById("pause").style.visibility = "hidden";
       myGameArea.ctx.clearRect(
         0,
