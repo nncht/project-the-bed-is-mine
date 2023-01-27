@@ -8,6 +8,7 @@ body {
   position: absolute;
   left: 762px;
   top: 340px;
+  visibility: hidden;
   display: inline-flex;
   flex-direction: column;
   justify-content: flex-start;

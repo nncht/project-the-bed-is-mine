@@ -246,7 +246,8 @@ let legsBar = new ProgressBar(
 
 document.getElementById("play").addEventListener("click", (event) => {
   setInterval(myGameArea.update, 1000 / 30);
-  // document.querySelector(".all-bars").style.display = "inline-flex";
+  document.querySelector(".all-bars").style.visibility = "visible";
+  document.querySelector(".instructions").style.visibility = "hidden";
 });
 
 document.addEventListener("keydown", (event) => {
