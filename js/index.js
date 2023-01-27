@@ -53,8 +53,16 @@ const myGameArea = {
     // if (this.remainingLives === 0)
     if (player.checkCollision(tempGameOver)) {
       myGameArea.isGameOver = true;
+      document.querySelector(".all-bars").style.visibility = "hidden";
       document.getElementById("title").innerHTML = "Game Over!";
       document.getElementById("pause").style.visibility = "hidden";
+      myGameArea.ctx.clearRect(
+        0,
+        0,
+        myGameArea.canvas.width,
+        myGameArea.canvas.height
+      );
+      document.getElementById("game-over").style.display = "flex";
     }
   },
 };
@@ -110,8 +118,8 @@ class Player extends Component {
   }
 
   moveLeft() {
-    if (this.x < 250) {
-      this.x = 250;
+    if (this.x < 260) {
+      this.x = 240;
     } else {
       this.x -= 10;
     }
@@ -225,7 +233,7 @@ myGameArea.components.push(butt);
 let legs = new Component(440, 450, 100, 50, "rgba(0,0,0,0.0)");
 myGameArea.components.push(legs);
 
-let tempGameOver = new Component(220, 250, 30, 50, "rgba(0,0,0,0.0)");
+let tempGameOver = new Component(0, 0, 255, 550, "rgba(0,0,0,0.0)");
 myGameArea.components.push(tempGameOver);
 
 // Render hearts
