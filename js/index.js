@@ -248,6 +248,11 @@ document.getElementById("play").addEventListener("click", (event) => {
   setInterval(myGameArea.update, 1000 / 30);
   document.querySelector(".all-bars").style.visibility = "visible";
   document.querySelector(".instructions").style.visibility = "hidden";
+  document.getElementById("play").style.display = "none";
+});
+
+document.getElementById("restart").addEventListener("click", (event) => {
+  location.reload();
 });
 
 document.addEventListener("keydown", (event) => {
