@@ -41,6 +41,8 @@ const myGameArea = {
     ) {
       document.getElementById("title").innerHTML = "Territory claimed!";
       document.getElementById("pause").style.visibility = "hidden";
+      let heart4 = new Life(380, 180, 40, 40);
+      myGameArea.components.push(heart4);
       player.x = 270;
       player.y = 200;
       target.x = 630;
@@ -291,35 +293,20 @@ document.addEventListener("keydown", (event) => {
     case "d":
       player.moveRight();
       break;
+    case "W":
+      player.moveUp();
+      break;
+    case "A":
+      player.moveLeft();
+      break;
+    case "S":
+      player.moveDown();
+      break;
+    case "D":
+      player.moveRight();
+      break;
     case " ":
       player.holdSpace();
       break;
   }
 });
-
-// document.getElementById("play").addEventListener("click", (event) => {
-//   document.getElementById("main-menu").style.display = "none";
-//   document.getElementById("restart").disabled = false;
-//   document.getElementById("pause").disabled = false;
-// });
-
-// let restart = () => {
-//   myGameArea.headProgress = 0;
-//   myGameArea.buttProgress = 0;
-//   myGameArea.legsProgress = 0;
-//   remainingLives = 3;
-//   player.x = 270;
-//   player.y = 200;
-//   target.x = 430;
-//   target.y = 40;
-// };
-
-// let pauseGame = () => {
-//   myGameArea.isGamePaused = true;
-//   document.getElementById("pause-game").style.display = "flex";
-// };
-
-// let resumeGame = () => {
-//   myGameArea.isGamePaused = false;
-//   document.getElementById("pause-game").style.display = "none";
-// };
