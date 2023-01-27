@@ -40,6 +40,9 @@ const myGameArea = {
       myGameArea.legsProgress >= 100
     ) {
       document.getElementById("title").innerHTML = "Territory claimed!";
+      document.getElementById("pause").style.visibility = "hidden";
+      player.x = 270;
+      player.y = 200;
       target.x = 630;
       zzz.x = 680;
     }
@@ -244,15 +247,34 @@ let legsBar = new ProgressBar(
   myGameArea.legsProgress
 );
 
+// Start Game
 document.getElementById("play").addEventListener("click", (event) => {
   setInterval(myGameArea.update, 1000 / 30);
   document.querySelector(".all-bars").style.visibility = "visible";
   document.querySelector(".instructions").style.visibility = "hidden";
   document.getElementById("play").style.display = "none";
+  document.getElementById("restart").style.visibility = "visible";
+  document.getElementById("pause").style.visibility = "visible";
 });
 
+// Restart Game
 document.getElementById("restart").addEventListener("click", (event) => {
   location.reload();
+});
+
+// Pause Game
+document.getElementById("pause").addEventListener("click", (event) => {
+  myGameArea.isGamePaused = true;
+  document.getElementById("pause-game").style.display = "flex";
+  document.getElementById("pause-game").style.visibility = "visible";
+  document.getElementById("pause").style.visibility = "hidden";
+});
+
+// Resume Game
+document.getElementById("resume").addEventListener("click", (event) => {
+  myGameArea.isGamePaused = false;
+  document.getElementById("pause-game").style.display = "none";
+  document.getElementById("pause").style.visibility = "visible";
 });
 
 document.addEventListener("keydown", (event) => {
