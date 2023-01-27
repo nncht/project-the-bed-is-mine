@@ -50,8 +50,11 @@ const myGameArea = {
     }
 
     // Game Over
-    if (this.remainingLives === 0) {
+    // if (this.remainingLives === 0)
+    if (player.checkCollision(tempGameOver)) {
+      myGameArea.isGameOver = true;
       document.getElementById("title").innerHTML = "Game Over!";
+      document.getElementById("pause").style.visibility = "hidden";
     }
   },
 };
@@ -222,6 +225,9 @@ myGameArea.components.push(butt);
 let legs = new Component(440, 450, 100, 50, "rgba(0,0,0,0.0)");
 myGameArea.components.push(legs);
 
+let tempGameOver = new Component(220, 250, 30, 50, "rgba(0,0,0,0.0)");
+myGameArea.components.push(tempGameOver);
+
 // Render hearts
 let heart1 = new Life(myGameArea.canvas.width - 70, 18, 50, 50);
 myGameArea.components.push(heart1);
@@ -280,33 +286,35 @@ document.getElementById("resume").addEventListener("click", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  switch (event.key) {
-    case "w":
-      player.moveUp();
-      break;
-    case "a":
-      player.moveLeft();
-      break;
-    case "s":
-      player.moveDown();
-      break;
-    case "d":
-      player.moveRight();
-      break;
-    case "W":
-      player.moveUp();
-      break;
-    case "A":
-      player.moveLeft();
-      break;
-    case "S":
-      player.moveDown();
-      break;
-    case "D":
-      player.moveRight();
-      break;
-    case " ":
-      player.holdSpace();
-      break;
+  if (myGameArea.isGamePaused === false) {
+    switch (event.key) {
+      case "w":
+        player.moveUp();
+        break;
+      case "a":
+        player.moveLeft();
+        break;
+      case "s":
+        player.moveDown();
+        break;
+      case "d":
+        player.moveRight();
+        break;
+      case "W":
+        player.moveUp();
+        break;
+      case "A":
+        player.moveLeft();
+        break;
+      case "S":
+        player.moveDown();
+        break;
+      case "D":
+        player.moveRight();
+        break;
+      case " ":
+        player.holdSpace();
+        break;
+    }
   }
 });
