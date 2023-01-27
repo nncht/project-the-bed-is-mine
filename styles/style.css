@@ -31,6 +31,12 @@ body {
   justify-content: center;
 }
 
+.instructions {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+}
+
 #play,
 #game-over,
 #pause-game {
@@ -53,14 +59,14 @@ body {
 
 #restart {
   position: absolute;
-  bottom: -50px;
-  left: 40%;
+  top: 30px;
+  left: 500px;
   transform: translateX(-50%);
 }
 
 #pause {
   position: absolute;
-  bottom: -50px;
-  left: 60%;
+  top: 30px;
+  left: 600px;
   transform: translateX(-50%);
 }

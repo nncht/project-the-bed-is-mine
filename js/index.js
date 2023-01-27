@@ -244,7 +244,10 @@ let legsBar = new ProgressBar(
   myGameArea.legsProgress
 );
 
-setInterval(myGameArea.update, 1000 / 30);
+document.getElementById("play").addEventListener("click", (event) => {
+  setInterval(myGameArea.update, 1000 / 30);
+  // document.querySelector(".all-bars").style.display = "inline-flex";
+});
 
 document.addEventListener("keydown", (event) => {
   switch (event.key) {
