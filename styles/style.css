@@ -39,7 +39,7 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: row;
-  top: 3%;
+  top: 30px;
   left: 300px;
   text-align: center;
   padding-left: 20px;

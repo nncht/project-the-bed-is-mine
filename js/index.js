@@ -35,8 +35,8 @@ const myGameArea = {
 
     // Victory
     if (
-      myGameArea.headProgress &&
-      myGameArea.buttProgress &&
+      myGameArea.headProgress >= 100 &&
+      myGameArea.buttProgress >= 100 &&
       myGameArea.legsProgress >= 100
     ) {
       document.getElementById("title").innerHTML = "Territory claimed!";
@@ -51,8 +51,7 @@ const myGameArea = {
   },
 };
 
-let clickButton = document.getElementById("play");
-clickButton.addEventListener("click", myGameArea.start());
+myGameArea.start();
 
 class Component {
   constructor(x, y, w, h, color) {
