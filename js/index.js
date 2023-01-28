@@ -51,15 +51,15 @@ const myGameArea = {
     // Increment progress values
     if (player.checkCollision(head)) {
       player.x = 320;
-      myGameArea.headProgress += 2;
+      myGameArea.headProgress += 8;
       headBar.setValue(myGameArea.headProgress);
     } else if (player.checkCollision(butt)) {
       player.x = 320;
-      myGameArea.buttProgress += 2;
+      myGameArea.buttProgress += 8;
       buttBar.setValue(myGameArea.buttProgress);
     } else if (player.checkCollision(legs)) {
       player.x = 320;
-      myGameArea.legsProgress += 2;
+      myGameArea.legsProgress += 8;
       legsBar.setValue(myGameArea.legsProgress);
     }
 
