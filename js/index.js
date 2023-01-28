@@ -4,7 +4,9 @@ const myGameArea = {
   headProgress: 0,
   buttProgress: 0,
   legsProgress: 0,
+  aboutToWake: false,
   isAwake: false,
+  pretendAsleep: false,
   remainingLives: 3,
   isGameStarted: false,
   isGamePaused: false,
@@ -21,11 +23,29 @@ const myGameArea = {
       component.render();
     });
 
-    if (myGameArea.isAwake === false) {
+    if (myGameArea.isAwake === false && myGameArea.aboutToWake === false) {
       target.render();
       zzz.render();
+    } else if (
+      myGameArea.isAwake === false &&
+      myGameArea.aboutToWake === true
+    ) {
+      target.render();
     } else if (myGameArea.isAwake === true) {
       targetAwake.render();
+    }
+
+    if (myGameArea.remainingLives === 3) {
+      heart1.render();
+      heart2.render();
+      heart3.render();
+    } else if (myGameArea.remainingLives === 2) {
+      heart1.render();
+      heart2.render();
+    } else if (myGameArea.remainingLives === 1) {
+      heart1.render();
+    } else {
+      console.log("Game Over!");
     }
 
     // Increment progress values
@@ -42,6 +62,13 @@ const myGameArea = {
       myGameArea.legsProgress += 10;
       legsBar.setValue(myGameArea.legsProgress);
     }
+
+    // Pause
+    if (myGameArea.isGamePaused === true) {
+      clearTimeout(timeoutID);
+    }
+
+    // Create resume function
 
     // Victory
     if (
@@ -63,8 +90,7 @@ const myGameArea = {
     }
 
     // Game Over
-    // if (this.remainingLives === 0)
-    if (player.checkCollision(tempGameOver)) {
+    if (myGameArea.remainingLives === 0) {
       myGameArea.isGameOver = true;
       document.querySelector(".all-bars").style.visibility = "hidden";
       document.getElementById("title").innerHTML = "The bed is ours!";
@@ -134,7 +160,7 @@ class Player extends Component {
     if (this.x < 260) {
       this.x = 240;
     } else {
-      this.x -= 10;
+      this.x -= 20;
     }
   }
 
@@ -142,7 +168,7 @@ class Player extends Component {
     if (this.x > 349) {
       this.x = 349;
     } else {
-      this.x += 10;
+      this.x += 20;
     }
   }
 
@@ -150,7 +176,7 @@ class Player extends Component {
     if (this.y < 10) {
       this.y = 10;
     } else {
-      this.y -= 10;
+      this.y -= 20;
     }
   }
 
@@ -158,11 +184,12 @@ class Player extends Component {
     if (this.y > 426) {
       this.y = 426;
     } else {
-      this.y += 10;
+      this.y += 20;
     }
   }
 
   holdSpace() {
+    myGameArea.pretendAsleep = true;
     player.x = 270;
     player.y = 200;
   }
@@ -236,22 +263,15 @@ myGameArea.components.push(background);
 let target = new Target(430, 40, 150, 470);
 let targetAwake = new TargetAwake(430, 40, 150, 470);
 
-// if ((myGameArea.isAwake = false)) {
-//   if (myGameArea.components.includes(targetAwake)) {
-//     myGameArea.components.splice(targetAwake);
-//   } else {
-//     myGameArea.components.push(target);
-//   }
-// } else if ((myGameArea.isAwake = true)) {
-//   myGameArea.components.splice(target);
-//   myGameArea.components.push(targetAwake);
-// }
-
 let zzz = new Zzz(470, 10, 50, 57);
 
 // Dog
 let player = new Player(270, 200, 100, 100);
 myGameArea.components.push(player);
+
+let heart1 = new Life(myGameArea.canvas.width - 70, 18, 50, 50);
+let heart2 = new Life(myGameArea.canvas.width - 140, 18, 50, 50);
+let heart3 = new Life(myGameArea.canvas.width - 210, 18, 50, 50);
 
 // Collision hitboxes for head, butt and legs
 let head = new Component(440, 38, 100, 50, "rgba(0,0,0,0.0)");
@@ -265,16 +285,6 @@ myGameArea.components.push(legs);
 
 let tempGameOver = new Component(0, 0, 255, 550, "rgba(0,0,0,0.0)");
 myGameArea.components.push(tempGameOver);
-
-// Render hearts
-let heart1 = new Life(myGameArea.canvas.width - 70, 18, 50, 50);
-myGameArea.components.push(heart1);
-
-let heart2 = new Life(myGameArea.canvas.width - 140, 18, 50, 50);
-myGameArea.components.push(heart2);
-
-let heart3 = new Life(myGameArea.canvas.width - 210, 18, 50, 50);
-myGameArea.components.push(heart3);
 
 // Progress bars
 let headBar = new ProgressBar(
@@ -294,24 +304,57 @@ let legsBar = new ProgressBar(
 );
 
 // Random wakeup loop
-let timeoutID;
+// let timeoutID;
+// function wakeupLoop() {
+//   let randomTime = Math.floor(Math.random() * (10 - 6 + 1) + 6);
+//   let randomDuration = Math.floor(Math.random() * (5 - 3 + 1) + 3);
+
+//   timeoutID = setTimeout(function () {
+//     myGameArea.isAwake = true;
+//     setTimeout(function () {
+//       myGameArea.isAwake = false;
+//       myGameArea.aboutToWake = false;
+//     }, randomDuration * 1000);
+//     wakeupLoop();
+//   }, randomTime * 1000);
+// }
+
 function wakeupLoop() {
   let randomTime = Math.floor(Math.random() * (10 - 6 + 1) + 6);
   let randomDuration = Math.floor(Math.random() * (5 - 3 + 1) + 3);
 
   timeoutID = setTimeout(function () {
-    myGameArea.isAwake = true;
-    console.log(myGameArea.isAwake);
-    console.log("Awake for " + randomDuration + " seconds.");
+    myGameArea.aboutToWake = true;
+    setTimeout(function () {
+      myGameArea.isAwake = true;
+    }, 1000 / 3);
 
     setTimeout(function () {
       myGameArea.isAwake = false;
-      console.log(myGameArea.isAwake);
-      console.log("Asleep.");
+      myGameArea.aboutToWake = false;
     }, randomDuration * 1000);
     wakeupLoop();
   }, randomTime * 1000);
 }
+
+function isKeyPressed(event) {
+  if (
+    event.key === "w" ||
+    event.key === "a" ||
+    event.key === "s" ||
+    event.key === "d"
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+document.addEventListener("keydown", function (event) {
+  if (isKeyPressed(event) === true && myGameArea.isAwake === true) {
+    myGameArea.remainingLives -= 1;
+  }
+});
 
 // Start Game
 document.getElementById("play").addEventListener("click", (event) => {
