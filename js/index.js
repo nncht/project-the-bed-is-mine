@@ -23,6 +23,7 @@ const myGameArea = {
 
     if (myGameArea.isAwake === false) {
       target.render();
+      zzz.render();
     } else if (myGameArea.isAwake === true) {
       targetAwake.render();
     }
@@ -49,6 +50,8 @@ const myGameArea = {
       myGameArea.legsProgress >= 100
     ) {
       myGameArea.isGameWon = true;
+      clearTimeout(timeoutID);
+      console.log("Timeout cleared.");
       document.getElementById("title").innerHTML = "Territory claimed!";
       document.getElementById("pause").style.visibility = "hidden";
       let heart4 = new Life(380, 180, 40, 40);
@@ -245,7 +248,6 @@ let targetAwake = new TargetAwake(430, 40, 150, 470);
 // }
 
 let zzz = new Zzz(470, 10, 50, 57);
-myGameArea.components.push(zzz);
 
 // Dog
 let player = new Player(270, 200, 100, 100);
@@ -292,11 +294,12 @@ let legsBar = new ProgressBar(
 );
 
 // Random wakeup loop
+let timeoutID;
 function wakeupLoop() {
-  let randomTime = Math.floor(Math.random() * 10) + 1;
-  let randomDuration = Math.floor(Math.random() * (5 - 10 + 1) + 5);
+  let randomTime = Math.floor(Math.random() * (10 - 6 + 1) + 6);
+  let randomDuration = Math.floor(Math.random() * (5 - 3 + 1) + 3);
 
-  setTimeout(function () {
+  timeoutID = setTimeout(function () {
     myGameArea.isAwake = true;
     console.log(myGameArea.isAwake);
     console.log("Awake for " + randomDuration + " seconds.");
@@ -306,11 +309,7 @@ function wakeupLoop() {
       console.log(myGameArea.isAwake);
       console.log("Asleep.");
     }, randomDuration * 1000);
-    if (myGameArea.isGameWon === false) {
-      wakeupLoop();
-    } else {
-      console.log("Victory!");
-    }
+    wakeupLoop();
   }, randomTime * 1000);
 }
 
