@@ -51,15 +51,15 @@ const myGameArea = {
     // Increment progress values
     if (player.checkCollision(head)) {
       player.x = 320;
-      myGameArea.headProgress += 10;
+      myGameArea.headProgress += 2;
       headBar.setValue(myGameArea.headProgress);
     } else if (player.checkCollision(butt)) {
       player.x = 320;
-      myGameArea.buttProgress += 10;
+      myGameArea.buttProgress += 2;
       buttBar.setValue(myGameArea.buttProgress);
     } else if (player.checkCollision(legs)) {
       player.x = 320;
-      myGameArea.legsProgress += 10;
+      myGameArea.legsProgress += 2;
       legsBar.setValue(myGameArea.legsProgress);
     }
 
@@ -386,6 +386,7 @@ document.getElementById("resume").addEventListener("click", (event) => {
   myGameArea.isGamePaused = false;
   document.getElementById("pause-game").style.display = "none";
   document.getElementById("pause").style.visibility = "visible";
+  wakeupLoop();
 });
 
 // Movement
